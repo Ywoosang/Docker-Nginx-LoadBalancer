@@ -1,0 +1,31 @@
+version: '3.7'
+services: 
+  proxy:
+    build: ./nginx
+    ports:
+      - 8080:80
+    depends_on:
+      - web1
+      - web2
+      - web3
+  web1:
+    build: ./web
+    environment: 
+      - PORT=8000
+    ports:
+      - "8000"
+  web2:
+    build: ./web
+    environment: 
+      - PORT=8001
+    ports:
+      - "8000"
+  web3:
+    build: ./web
+    environment: 
+      - PORT=8002
+    ports:
+      - "8000"
+  
+networks:
+  sample_net:
